@@ -48,11 +48,24 @@ const Register = () => {
             <Form.Item
               label="Şifre Tekrar"
               name={"passwordAgain"}
+              dependencies={["password"]}
               rules={[
                 {
                   required: true,
                   message: "Şifre Tekrar Alanı Boş Bırakılamaz",
                 },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error(
+                        "The two passwords that you entered do not match!"
+                      )
+                    );
+                  },
+                }),
               ]}
             >
               <Input.Password />
