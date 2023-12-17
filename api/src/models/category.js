@@ -12,7 +12,7 @@ const { mongoose } = require("../configs/dbConnection");
 
 const CategorySchema = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
       trim: true,
       required: true,
@@ -23,6 +23,10 @@ const CategorySchema = new mongoose.Schema(
 );
 
 /* ------------------------------------------------------- */
-
+// FOR REACT PROJECT:
+CategorySchema.pre("init", function (data) {
+  data.id = data._id;
+  data.createds = data.createdAt.toLocaleDateString("tr-tr");
+});
 /* ------------------------------------------------------- */
 module.exports = mongoose.model("Category", CategorySchema);
