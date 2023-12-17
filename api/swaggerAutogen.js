@@ -14,8 +14,8 @@ const document = {
     version: packageJson.version,
     title: packageJson.title,
     description: packageJson.description,
-    termsOfService: "http://www.ilkaytech.com/#",
-    contact: { name: packageJson.author, email: "info@ilkaytech.com" },
+    termsOfService: "http://www.clarusway.com/#",
+    contact: { name: packageJson.author, email: "qadir@clarusway.com" },
     license: { name: packageJson.license },
   },
   host: `${HOST}:${PORT}`,
@@ -43,12 +43,12 @@ const document = {
   definition: {
     // Models:
     User: require("./src/models/user").schema.obj,
-    // Brand: require("./src/models/brand").schema.obj,
+    Brand: require("./src/models/brand").schema.obj,
     Category: require("./src/models/category").schema.obj,
-    // Firm: require("./src/models/firm").schema.obj,
+    Firm: require("./src/models/firm").schema.obj,
     Product: require("./src/models/product").schema.obj,
-    // Purchase: require("./src/models/purchase").schema.obj,
-    // Sale: require("./src/models/sale").schema.obj,
+    Purchase: require("./src/models/purchase").schema.obj,
+    Sale: require("./src/models/sale").schema.obj,
   },
 };
 
