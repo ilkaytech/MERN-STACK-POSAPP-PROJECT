@@ -50,6 +50,34 @@ module.exports = async function () {
     is_superadmin: false,
   });
 
+  /* Category */
+  const Category = require("../models/category");
+  await Category.deleteMany(); // !!! Clear collection.
+  await Category.create({
+    _id: "65343222b67e9681f937f201",
+    name: "Tümü",
+  });
+  await Category.create({
+    _id: "65343222b67e9681f937f202",
+    name: "Yiyecek",
+  });
+  await Category.create({
+    _id: "65343222b67e9681f937f203",
+    name: "İçecek",
+  });
+  await Category.create({
+    _id: "65343222b67e9681f937f205",
+    name: "Meyve",
+  });
+  await Category.create({
+    _id: "65343222b67e9681f937f206",
+    name: "Sebze",
+  });
+  await Category.create({
+    _id: "65343222b67e9681f937f207",
+    name: "Kıyafet",
+  });
+
   /* Finished */
   console.log("* Synchronized.");
 };

@@ -34,6 +34,15 @@ module.exports = {
   },
 
   create: async (req, res) => {
+    const { title } = req.body;
+
+    if (!title) {
+      return res.status(400).send({
+        error: true,
+        message: "Title is required.",
+      });
+    }
+
     /*
             #swagger.tags = ["Categories"]
             #swagger.summary = "Create Category"
