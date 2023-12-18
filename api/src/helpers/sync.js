@@ -50,65 +50,6 @@ module.exports = async function () {
     is_superadmin: false,
   });
 
-  /* Category */
-  const Category = require("../models/category");
-  await Category.deleteMany(); // !!! Clear collection.
-  await Category.create({
-    _id: "65343222b67e9681f937f201",
-    name: "Food",
-  });
-  await Category.create({
-    _id: "65343222b67e9681f937f202",
-    name: "Drink",
-  });
-  await Category.create({
-    _id: "65343222b67e9681f937f203",
-    name: "Jewelery",
-  });
-  await Category.create({
-    _id: "65343222b67e9681f937f204",
-    name: "Electronic",
-  });
-
-  /* Product */
-  const Product = require("../models/product");
-  await Product.deleteMany(); // !!! Clear collection.
-  await Product.create({
-    _id: "65343222b67e9681f937f421",
-    name: "Tommy",
-    category_id: "65343222b67e9681f937f203",
-    brand_id: "65343222b67e9681f937f107",
-    stock: 0,
-  });
-  await Product.create({
-    _id: "65343222b67e9681f937f422",
-    name: "Link",
-    category_id: "65343222b67e9681f937f202",
-    brand_id: "65343222b67e9681f937f123",
-    stock: 910,
-  });
-  await Product.create({
-    _id: "65343222b67e9681f937f423",
-    name: "Cola Turka",
-    category_id: "65343222b67e9681f937f202",
-    brand_id: "65343222b67e9681f937f123",
-    stock: 750,
-  });
-  await Product.create({
-    _id: "65343222b67e9681f937f426",
-    name: "Rondo",
-    category_id: "65343222b67e9681f937f201",
-    brand_id: "65343222b67e9681f937f123",
-    stock: 900,
-  });
-  await Product.create({
-    _id: "65343222b67e9681f937f427",
-    name: "Iphone 14 Pro",
-    category_id: "65343222b67e9681f937f204",
-    brand_id: "65343222b67e9681f937f131",
-    stock: 0,
-  });
-
   /* Finished */
   console.log("* Synchronized.");
 };

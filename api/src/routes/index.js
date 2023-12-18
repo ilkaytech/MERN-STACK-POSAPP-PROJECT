@@ -9,28 +9,24 @@ const router = require("express").Router();
 // URL: /
 
 // auth:
-router.use("/account/auth", require("./auth"));
-// call user.create for /account/register:
-const { create: userCreate } = require("../controllers/user");
-router.post("/account/register", userCreate);
-
+router.use("/auth", require("./auth"));
 // user:
 router.use("/users", require("./user"));
 // token:
 router.use("/tokens", require("./token"));
 
 // brand:
-// router.use("/pos/brands", require("./brand"));
+// router.use("/brands", require("./brand"));
 // category:
-router.use("/pos/categories", require("./category"));
-// bill:
-router.use("/pos/firms", require("./bill"));
+router.use("/categories", require("./category"));
+// firm:
+router.use("/bills", require("./bill"));
 // product:
-router.use("/pos/products", require("./product"));
+router.use("/products", require("./product"));
 // purchase:
-// router.use("/pos/purchases", require("./purchase"));
+// router.use("/purchases", require("./purchase"));
 // sale:
-// router.use("/pos/sales", require("./sale"));
+// router.use("/sales", require("./sale"));
 
 // document:
 router.use("/documents", require("./document"));

@@ -4,7 +4,7 @@
 ----------------------------------------- */
 // passwordEncrypt(password:string):
 
-const { pbkdf2Sync } = require("crypto"),
+const { pbkdf2Sync } = require("node:crypto"),
   keyCode = process.env.SECRET_KEY,
   loopCount = 1000,
   charCount = 32,
