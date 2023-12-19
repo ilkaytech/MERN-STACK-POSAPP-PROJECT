@@ -2,6 +2,7 @@
 /* --------------------------------------
     NODEJS EXPRESS | POS API
 ----------------------------------------- */
+// node i nodemailer
 // sendMail(to:string, subject:string, message:string):
 
 const nodemailer = require("nodemailer");

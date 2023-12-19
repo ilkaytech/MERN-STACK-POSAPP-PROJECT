@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Pos API",
-    "description": "Stock Management System",
+    "description": "Pos APPLİCATİON",
     "termsOfService": "http://www.ilkaytech.com/#",
     "contact": {
       "name": "ilkaytech",
@@ -33,11 +33,21 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
+    "/account/register": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/account/auth/login": {
       "post": {
         "tags": ["Authentication"],
         "summary": "Login",
-        "description": "Login with username (or email) and password.",
+        "description": "Login with username (or email) and password for get simpleToken and JWT",
         "parameters": [
           {
             "name": "body",
@@ -65,10 +75,43 @@
         }
       }
     },
+    "/account/auth/refresh": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "JWT: Refresh",
+        "description": "Refresh accessToken with  ",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bearer": {
+                  "type": "object",
+                  "properties": {
+                    "refresh": {
+                      "type": "string",
+                      "example": "...refreshToken..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/account/auth/logout": {
       "get": {
         "tags": ["Authentication"],
-        "summary": "Logout",
+        "summary": "simpleToken: Logout",
         "description": "Delete token key.",
         "responses": {
           "200": {
@@ -78,7 +121,7 @@
       },
       "post": {
         "tags": ["Authentication"],
-        "summary": "Logout",
+        "summary": "simpleToken: Logout",
         "description": "Delete token key.",
         "responses": {
           "200": {
@@ -122,13 +165,13 @@
                   "type": "string",
                   "example": "test@site.com"
                 },
-                "is_active": {
-                  "type": "boolean",
-                  "example": true
+                "first_name": {
+                  "type": "string",
+                  "example": "test"
                 },
-                "is_superadmin": {
-                  "type": "boolean",
-                  "example": false
+                "last_name": {
+                  "type": "string",
+                  "example": "test"
                 }
               }
             }
@@ -190,21 +233,21 @@
                   "type": "string",
                   "example": "test@site.com"
                 },
-                "is_active": {
-                  "type": "boolean",
-                  "example": true
+                "first_name": {
+                  "type": "string",
+                  "example": "test"
                 },
-                "is_superadmin": {
-                  "type": "boolean",
-                  "example": false
+                "last_name": {
+                  "type": "string",
+                  "example": "test"
                 }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -259,21 +302,21 @@
                   "type": "string",
                   "example": "test@site.com"
                 },
-                "is_active": {
-                  "type": "boolean",
-                  "example": true
+                "first_name": {
+                  "type": "string",
+                  "example": "test"
                 },
-                "is_superadmin": {
-                  "type": "boolean",
-                  "example": false
+                "last_name": {
+                  "type": "string",
+                  "example": "test"
                 }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -350,8 +393,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -397,8 +440,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -475,8 +518,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -522,8 +565,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -600,8 +643,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -647,8 +690,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -725,8 +768,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -772,8 +815,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -850,8 +893,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -897,8 +940,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -975,8 +1018,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       },
@@ -1022,8 +1065,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "202": {
+            "description": "Accepted"
           }
         }
       }
@@ -1048,6 +1091,10 @@
               "example": true
             },
             "unique": {
+              "type": "boolean",
+              "example": true
+            },
+            "index": {
               "type": "boolean",
               "example": true
             }
@@ -1084,6 +1131,10 @@
               "example": true
             },
             "unique": {
+              "type": "boolean",
+              "example": true
+            },
+            "index": {
               "type": "boolean",
               "example": true
             }
@@ -1333,7 +1384,7 @@
             }
           }
         },
-        "quantity": {
+        "stock": {
           "type": "object",
           "properties": {
             "type": {
@@ -1445,8 +1496,10 @@
               "type": "function"
             },
             "default": {
-              "type": "number",
-              "example": 0
+              "type": "function"
+            },
+            "transform": {
+              "type": "function"
             }
           }
         }
@@ -1534,8 +1587,10 @@
               "type": "function"
             },
             "default": {
-              "type": "number",
-              "example": 0
+              "type": "function"
+            },
+            "transform": {
+              "type": "function"
             }
           }
         }

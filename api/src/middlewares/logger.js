@@ -2,6 +2,7 @@
 /* --------------------------------------
     NODEJS EXPRESS | POS API
 ----------------------------------------- */
+// $ npm i morgan
 // app.use(logger):
 
 const morgan = require("morgan");

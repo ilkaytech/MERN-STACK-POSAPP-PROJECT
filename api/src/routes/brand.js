@@ -4,24 +4,24 @@
 ----------------------------------------- */
 const router = require("express").Router();
 /* ------------------------------------------------------- */
-// routes/bill:
+// routes/brand:
 
 const permissions = require("../middlewares/permissions");
-const bill = require("../controllers/bill");
+const brand = require("../controllers/brand");
 
-// URL: /bills
+// URL: /brands
 
 router
   .route("/")
-  .get(permissions.isStaff, bill.list)
-  .post(permissions.isStaff, bill.create);
+  .get(permissions.isStaff, brand.list)
+  .post(permissions.isStaff, brand.create);
 
 router
   .route("/:id")
-  .get(permissions.isStaff, bill.read)
-  .put(permissions.isStaff, bill.update)
-  .patch(permissions.isStaff, bill.update)
-  .delete(permissions.isAdmin, bill.delete);
+  .get(permissions.isStaff, brand.read)
+  .put(permissions.isAdmin, brand.update)
+  .patch(permissions.isAdmin, brand.update)
+  .delete(permissions.isAdmin, brand.delete);
 
 /* ------------------------------------------------------- */
 module.exports = router;

@@ -2,15 +2,15 @@
 /* --------------------------------------
     NODEJS EXPRESS | POS API
 ----------------------------------------- */
-// Bill Controller:
+// Firm Controller:
 
-const Bill = require("../models/Bill");
+const Firm = require("../models/firm");
 
 module.exports = {
   list: async (req, res) => {
     /*
-            #swagger.tags = ["Bills"]
-            #swagger.summary = "List Bills"
+            #swagger.tags = ["Firms"]
+            #swagger.summary = "List Firms"
             #swagger.description = `
                 You can send query with endpoint for search[], sort[], page and limit.
                 <ul> Examples:
@@ -21,11 +21,11 @@ module.exports = {
             `
         */
 
-    const data = await res.getModelList(Bill);
+    const data = await res.getModelList(Firm);
 
     // res.status(200).send({
     //     error: false,
-    //     details: await res.getModelListDetails(Bill),
+    //     details: await res.getModelListDetails(Firm),
     //     data
     // })
 
@@ -35,16 +35,16 @@ module.exports = {
 
   create: async (req, res) => {
     /*
-            #swagger.tags = ["Bills"]
-            #swagger.summary = "Create Bill"
+            #swagger.tags = ["Firms"]
+            #swagger.summary = "Create Firm"
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: { $ref: '#/definitions/Bill' }
+                schema: { $ref: '#/definitions/Firm' }
             }
         */
 
-    const data = await Bill.create(req.body);
+    const data = await Firm.create(req.body);
 
     res.status(201).send({
       error: false,
@@ -54,11 +54,11 @@ module.exports = {
 
   read: async (req, res) => {
     /*
-            #swagger.tags = ["Bills"]
-            #swagger.summary = "Get Single Bill"
+            #swagger.tags = ["Firms"]
+            #swagger.summary = "Get Single Firm"
         */
 
-    const data = await Bill.findOne({ _id: req.params.id });
+    const data = await Firm.findOne({ _id: req.params.id });
 
     res.status(200).send({
       error: false,
@@ -68,33 +68,33 @@ module.exports = {
 
   update: async (req, res) => {
     /*
-            #swagger.tags = ["Bills"]
-            #swagger.summary = "Update Bill"
+            #swagger.tags = ["Firms"]
+            #swagger.summary = "Update Firm"
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: { $ref: '#/definitions/Bill' }
+                schema: { $ref: '#/definitions/Firm' }
             }
         */
 
-    const data = await Bill.updateOne({ _id: req.params.id }, req.body, {
+    const data = await Firm.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
     });
 
     res.status(202).send({
       error: false,
       data,
-      new: await Bill.findOne({ _id: req.params.id }),
+      new: await Firm.findOne({ _id: req.params.id }),
     });
   },
 
   delete: async (req, res) => {
     /*
-            #swagger.tags = ["Bills"]
-            #swagger.summary = "Delete Bill"
+            #swagger.tags = ["Firms"]
+            #swagger.summary = "Delete Firm"
         */
 
-    const data = await Bill.deleteOne({ _id: req.params.id });
+    const data = await Firm.deleteOne({ _id: req.params.id });
 
     res.status(data.deletedCount ? 204 : 404).send({
       error: !data.deletedCount,

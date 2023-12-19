@@ -29,16 +29,49 @@ dbConnection();
 // Accept JSON:
 app.use(express.json());
 
-app.use(require("cors")()); // Run with defaults.
-// app.use(
-//   require("cors")({
-//     origin: [
-//       "http://localhost:3000",
-//       "http://localhost:4173",
-//       "http://localhost:5173",
-//     ],
-//   })
-// );
+// CORS Middleware:
+// https://expressjs.com/en/resources/middleware/cors.html
+// npm i cors
+
+// const cors = require('cors')
+// Default using:
+// app.use(cors())
+// Default options:
+// app.use(cors({
+//     "origin": "*",
+//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     "preflightContinue": false,
+//     "optionsSuccessStatus": 204
+// }))
+/*
+
+    if (process.env.NODE_ENV=="development") {
+        const corsOptions = {}
+    } else {
+        const corsOptions = {}
+    }
+    app.use(cors(corsOptions))
+*/
+// app.use(cors({
+//     "origin": ["http://localhost:3000", "http://localhost:4173", "http://localhost:5173"], //"http://localhost:5173", // true // false // "*",
+//     // "origin": function (origin, callback) { },
+//     "methods": "GET, HEAD, PUT, PATCH, POST, DELETE",
+// }))
+/*
+    app.get('*', cors({ origin: 'onlyget.com' }))
+    app.all('*', cors({ origin: 'allmethods.com' }))
+*/
+
+// app.use(require('cors')()) // Run with defaults.
+app.use(
+  require("cors")({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:4173",
+      "http://localhost:5173",
+    ],
+  })
+);
 
 // Call static uploadFile:
 app.use("/upload", express.static("./upload"));
@@ -59,7 +92,7 @@ app.use(require("./src/middlewares/findSearchSortPage"));
 app.all("/", (req, res) => {
   res.send({
     error: false,
-    message: "Welcome to Pos Application",
+    message: "Welcome to POS API",
     documents: {
       swagger: "/documents/swagger",
       redoc: "/documents/redoc",
@@ -70,7 +103,7 @@ app.all("/", (req, res) => {
 });
 
 // Routes:
-app.use(require("./src/routes"));
+app.use(require("./src/routes/index"));
 
 /* ------------------------------------------------------- */
 
@@ -78,9 +111,8 @@ app.use(require("./src/routes"));
 app.use(require("./src/middlewares/errorHandler"));
 
 // RUN SERVER:
-// app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`));
-app.listen(PORT, () => console.log(`http://${HOST}:${PORT}`));
+app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`));
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-require("./src/helpers/sync")(); // !!! It clear database.
+// require("./src/helpers/sync")(); // !!! It clear database.

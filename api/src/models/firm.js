@@ -5,46 +5,46 @@
 const { mongoose } = require("../configs/dbConnection");
 /* ------------------------------------------------------- *
 {
-    "name": "Bill 1"
+    "name": "Firm 1"
+    "phone": "999 88 77",
+    "address": "Address"
 }
 /* ------------------------------------------------------- */
-// Bill Model:
+// Firm Model:
 
-const BillSchema = new mongoose.Schema(
+const FirmSchema = new mongoose.Schema(
   {
-    customerName: {
+    name: {
       type: String,
+      trim: true,
       required: true,
+      unique: true,
     },
-    customerPhoneNumber: {
+
+    phone: {
       type: String,
-      required: true,
+      trim: true,
     },
-    paymentMode: {
+
+    address: {
       type: String,
-      required: true,
+      trim: true,
     },
-    cartItems: {
-      type: Array,
-      required: true,
-    },
-    subTotal: {
-      type: Number,
-      required: true,
-    },
-    tax: {
-      type: Number,
-      required: true,
-    },
-    totalAmount: {
-      type: Number,
-      required: true,
+
+    image: {
+      // URL
+      type: String,
+      trim: true,
     },
   },
-  { collection: "bills", timestamps: true }
+  { collection: "Firms", timestamps: true }
 );
 
 /* ------------------------------------------------------- */
-
+// FOR REACT PROJECT:
+FirmSchema.pre("init", function (data) {
+  data.id = data._id;
+  data.createds = data.createdAt.toLocaleDateString("tr-tr");
+});
 /* ------------------------------------------------------- */
-module.exports = mongoose.model("bill", BillSchema);
+module.exports = mongoose.model("Firm", FirmSchema);
