@@ -1,80 +1,59 @@
+import { useEffect, useState } from "react";
+import { PlusOutlined, EditOutlined } from "@ant-design/icons";
+import Add from "./Add";
+import Edit from "./Edit";
 import "./style.css";
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Form, Modal } from "antd";
-import Input from "antd/es/input/Input";
-import { useState } from "react";
 
-const Categories = () => {
+const Categories = ({ categories, setCategories, setFiltered, products }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [categoryTitle, setCategoryTitle] = useState("Tümü");
 
-  const onFinis = (values) => {
-    try {
-      fetch(process.env.REACT_APP_SERVER_URL + "categories", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: "Token YOUR_TOKEN_HERE",
-        },
-      });
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (categoryTitle === "Tümü") {
+      setFiltered(products);
+    } else {
+      setFiltered(products.filter((item) => item.category === categoryTitle));
     }
-  };
+  }, [products, setFiltered, categoryTitle]);
 
   return (
     <ul className="flex gap-4 md:flex-col text-lg">
-      <li className="category-item">
-        <span>Tümü</span>
-      </li>
-      <li className="category-item">
-        <span>Yiyecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>Meyve</span>
-      </li>
-      <li className="category-item">
-        <span>Sebze</span>
-      </li>
-      <li className="category-item">
-        <span>Kıyafet</span>
-      </li>
-
-      <li className="category-item">
-        <span>Düzenle</span>
-      </li>
+      {categories.map((item) => (
+        <li
+          className={`category-item ${
+            item.title === categoryTitle && "!bg-pink-700"
+          }`}
+          key={item._id}
+          onClick={() => setCategoryTitle(item.title)}
+        >
+          <span>{item.title}</span>
+        </li>
+      ))}
       <li
-        className="category-item !bg-purple-800 hover:opacity-80"
+        className="category-item !bg-purple-800 hover:opacity-90"
         onClick={() => setIsAddModalOpen(true)}
       >
-        <PlusOutlined classID="md:text-2xl" />
+        <PlusOutlined className="md:text-2xl" />
       </li>
-      <Modal
-        title="Yeni Kategori Ekle"
-        open={isAddModalOpen}
-        onCancel={() => setIsAddModalOpen(false)}
-        footer={false}
+      <li
+        className="category-item !bg-orange-800 hover:opacity-90"
+        onClick={() => setIsEditModalOpen(true)}
       >
-        <Form layout="vertical" onFinish={onFinis}>
-          <Form.Item
-            name="name"
-            label="Kategori Ekle"
-            rules={[
-              { required: true, message: "Kategori Alanı Boş Geçilemez!" },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item className="flex justify-end mb-0">
-            <Button type="primary" htmlType="submit">
-              Oluştur
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
+        <EditOutlined className="md:text-2xl" />
+      </li>
+      <Add
+        isAddModalOpen={isAddModalOpen}
+        setIsAddModalOpen={setIsAddModalOpen}
+        categories={categories}
+        setCategories={setCategories}
+      />
+      <Edit
+        isEditModalOpen={isEditModalOpen}
+        setIsEditModalOpen={setIsEditModalOpen}
+        categories={categories}
+        setCategories={setCategories}
+      />
     </ul>
   );
 };

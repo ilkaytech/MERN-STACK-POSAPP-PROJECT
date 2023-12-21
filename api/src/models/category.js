@@ -24,9 +24,9 @@ const CategorySchema = new mongoose.Schema(
 
 /* ------------------------------------------------------- */
 // FOR REACT PROJECT:
-CategorySchema.pre("init", function (data) {
-  data.id = data._id;
-  data.createds = data.createdAt.toLocaleDateString("tr-tr");
-});
+// CategorySchema.pre("init", function (data) {
+//   data.id = data._id;
+//   data.createds = data.createdAt.toLocaleDateString("tr-tr");
+// });
 /* ------------------------------------------------------- */
 module.exports = mongoose.model("Category", CategorySchema);

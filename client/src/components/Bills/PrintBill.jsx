@@ -1,6 +1,12 @@
 import { Button, Modal } from "antd";
-
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <Modal
       title="Fatura Yazdır"
@@ -9,7 +15,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
       onCancel={() => setIsModalOpen(false)}
       width={800}
     >
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-black" ref={componentRef}>
         <div className="max-w-5xl mx-auto bg-white px-6">
           <article className="overflow-hidden">
             <div className="logo my-6">
@@ -69,6 +75,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       scope="col"
                       className="py-3.5 text-left text-sm font-normal text-slate-700 md:pl-0 sm:table-cell hidden"
                     >
+                      {" "}
                       Başlık
                     </th>
                     <th
@@ -76,6 +83,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                       scope="col"
                       className="py-3.5 text-left text-sm font-normal text-slate-700 md:pl-0 sm:hidden"
                     >
+                      {" "}
                       Başlık
                     </th>
                     <th
@@ -112,7 +120,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                         <div className="flex flex-col">
                           <span className="font-medium">{item.title}</span>
                           <span className="sm:hidden inline-block text-xs">
-                            Birim Fiyatı {item.price}€
+                            Birim Fiyatı {item.price}₺
                           </span>
                         </div>
                       </td>
@@ -120,18 +128,18 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                         <div className="flex flex-col">
                           <span className="font-medium">{item.title}</span>
                           <span className="sm:hidden inline-block text-xs">
-                            Birim Fiyatı {item.price}€
+                            Birim Fiyatı {item.price}₺
                           </span>
                         </div>
                       </td>
                       <td className="py-4 text-center sm:table-cell hidden">
-                        <span>{item.price.toFixed(2)}€</span>
+                        <span>{item.price.toFixed(2)}₺</span>
                       </td>
                       <td className="py-4 sm:text-center text-right sm:table-cell hidden">
                         <span>{item.quantity}</span>
                       </td>
                       <td className="py-4 text-end">
-                        <span>{(item.price * item.quantity).toFixed(2)}€</span>
+                        <span>{(item.price * item.quantity).toFixed(2)}₺</span>
                       </td>
                     </tr>
                   ))}
@@ -156,7 +164,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-slate-700">
-                        {customer?.subTotal}€
+                        {customer?.subTotal}₺
                       </span>
                     </th>
                   </tr>
@@ -177,7 +185,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-red-600">
-                        +{customer?.tax}€
+                        +{customer?.tax}₺
                       </span>
                     </th>
                   </tr>
@@ -200,7 +208,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                     </th>
                     <th className="text-right pt-4" scope="row">
                       <span className="font-normal text-slate-700">
-                        {customer?.totalAmount}€
+                        {customer?.totalAmount}₺
                       </span>
                     </th>
                   </tr>
@@ -226,7 +234,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen, customer }) => {
         </div>
       </section>
       <div className="flex justify-end mt-4">
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" onClick={handlePrint}>
           Yazdır
         </Button>
       </div>

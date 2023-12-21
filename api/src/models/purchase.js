@@ -66,9 +66,9 @@ const PurchaseSchema = new mongoose.Schema(
 
 /* ------------------------------------------------------- */
 // FOR REACT PROJECT:
-PurchaseSchema.pre("init", function (data) {
-  data.id = data._id;
-  data.createds = data.createdAt.toLocaleDateString("tr-tr");
-});
+// PurchaseSchema.pre("init", function (data) {
+//   data.id = data._id;
+//   data.createds = data.createdAt.toLocaleDateString("tr-tr");
+// });
 /* ------------------------------------------------------- */
 module.exports = mongoose.model("Purchase", PurchaseSchema);

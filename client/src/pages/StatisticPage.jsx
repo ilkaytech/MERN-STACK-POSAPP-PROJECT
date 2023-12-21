@@ -17,7 +17,7 @@ const StatisticPage = () => {
     const getProducts = async () => {
       try {
         const res = await fetch(
-          process.env.REACT_APP_SERVER_URL + "/products/GET"
+          process.env.REACT_APP_SERVER_URL + "/api/products/get-all"
         );
         const data = await res.json();
         setProducts(data);
@@ -30,7 +30,7 @@ const StatisticPage = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch(process.env.REACT_APP_SERVER_URL + "/bills/GET")
+    fetch(process.env.REACT_APP_SERVER_URL + "/api/bills/get-all")
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -92,7 +92,7 @@ const StatisticPage = () => {
   return (
     <>
       <Header />
-      <h1 className="text-4xl font-bold text-center mb-4">Statistic</h1>
+      <h1 className="text-4xl font-bold text-center mb-4">İstatistiklerim</h1>
       {data ? (
         <div className="px-6 md:pb-0 pb-20">
           <div className="statistic-section">

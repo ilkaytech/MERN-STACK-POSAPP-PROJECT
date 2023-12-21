@@ -42,9 +42,9 @@ const FirmSchema = new mongoose.Schema(
 
 /* ------------------------------------------------------- */
 // FOR REACT PROJECT:
-FirmSchema.pre("init", function (data) {
-  data.id = data._id;
-  data.createds = data.createdAt.toLocaleDateString("tr-tr");
-});
+// FirmSchema.pre("init", function (data) {
+//   data.id = data._id;
+//   data.createds = data.createdAt.toLocaleDateString("tr-tr");
+// });
 /* ------------------------------------------------------- */
 module.exports = mongoose.model("Firm", FirmSchema);

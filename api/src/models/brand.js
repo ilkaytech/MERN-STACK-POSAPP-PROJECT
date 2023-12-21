@@ -30,9 +30,9 @@ const BrandSchema = new mongoose.Schema(
 
 /* ------------------------------------------------------- */
 // FOR REACT PROJECT:
-BrandSchema.pre("init", function (data) {
-  data.id = data._id;
-  data.createds = data.createdAt.toLocaleDateString("tr-tr");
-});
+// BrandSchema.pre("init", function (data) {
+//   data.id = data._id;
+//   data.createds = data.createdAt.toLocaleDateString("tr-tr");
+// });
 /* ------------------------------------------------------- */
 module.exports = mongoose.model("Brand", BrandSchema);

@@ -46,9 +46,9 @@ const ProductSchema = new mongoose.Schema(
 
 /* ------------------------------------------------------- */
 // FOR REACT PROJECT:
-ProductSchema.pre("init", function (data) {
-  data.id = data._id;
-  data.createds = data.createdAt.toLocaleDateString("tr-tr");
-});
+// ProductSchema.pre("init", function (data) {
+//   data.id = data._id;
+//   data.createds = data.createdAt.toLocaleDateString("tr-tr");
+// });
 /* ------------------------------------------------------- */
 module.exports = mongoose.model("Product", ProductSchema);
