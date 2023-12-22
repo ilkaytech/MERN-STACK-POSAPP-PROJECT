@@ -35,7 +35,7 @@ const Edit = ({
   const deleteCategory = (id) => {
     if (window.confirm("Emin misiniz?")) {
       try {
-        fetch(process.env.REACT_APP_SERVER_URL + "categories", {
+        fetch(process.env.REACT_APP_SERVER_URL + "/categories", {
           method: "DELETE",
           body: JSON.stringify({ categoryId: id }),
           headers: { "Content-type": "application/json; charset=UTF-8" },

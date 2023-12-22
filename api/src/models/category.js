@@ -15,8 +15,8 @@ const CategorySchema = new mongoose.Schema(
     title: {
       type: String,
       trim: true,
-      // required: true,
-      // unique: true,
+      required: true,
+      unique: true,
     },
   },
   { collection: "categories", timestamps: true }
