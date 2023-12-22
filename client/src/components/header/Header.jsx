@@ -19,8 +19,8 @@ const Header = ({ setSearch }) => {
 
   const logOut = () => {
     if (window.confirm("Çıkış yapmak istediğinize emin misiniz?")) {
-      localStorage.removeItem("posUser");
-      navigate("/login");
+      localStorage.removeItem("user");
+      navigate("/logout");
       message.success("Çıkış işlemi başarılı.");
     }
   };

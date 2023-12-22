@@ -12,11 +12,11 @@ const { mongoose } = require("../configs/dbConnection");
 
 const CategorySchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       trim: true,
-      required: true,
-      unique: true,
+      // required: true,
+      // unique: true,
     },
   },
   { collection: "categories", timestamps: true }

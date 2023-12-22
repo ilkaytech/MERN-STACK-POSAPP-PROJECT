@@ -11,23 +11,35 @@ const Register = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const res = await fetch(process.env.REACT_APP_SERVER_URL + "/register", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-        Authorization: "Token YOUR_TOKEN_HERE",
-      });
+      const res = await fetch(
+        process.env.REACT_APP_SERVER_URL + "/auth/refresh",
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
+
+      const data = await res.json();
+
       if (res.status === 200) {
-        message.success("Kayıt işlemi başarılı.");
-        navigate("/login");
-        setLoading(false);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        message.success("Giriş işlemi başarılı.");
+
+        navigate("/");
+      } else {
+        message.error(data.message || "Giriş yapılamadı.");
       }
+
+      setLoading(false);
     } catch (error) {
+      console.error("Login error:", error);
       message.error("Bir şeyler yanlış gitti.");
-      console.log(error);
+      setLoading(false);
     }
   };
-
   return (
     <div className="h-screen">
       <div className="flex justify-between h-full">

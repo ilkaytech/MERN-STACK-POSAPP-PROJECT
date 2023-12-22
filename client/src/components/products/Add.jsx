@@ -16,7 +16,6 @@ const Add = ({
         method: "POST",
         body: JSON.stringify(values),
         headers: { "Content-type": "application/json; charset=UTF-8" },
-        Authorization: "Token YOUR_TOKEN_HERE",
       });
       message.success("Ürün başarıyla eklendi.");
       form.resetFields();

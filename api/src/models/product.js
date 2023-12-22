@@ -26,20 +26,31 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
 
-    name: {
+    title: {
       type: String,
-      trim: true,
+      // trim: true,
       required: true,
     },
-
+    img: {
+      type: String,
+      require: true,
+    },
+    price: {
+      type: Number,
+      require: true,
+    },
+    category: {
+      type: String,
+      require: true,
+    },
     // quantity: {
     //     type: Number,
     //     default: 0
     // },
-    stock: {
-      type: Number,
-      default: 0,
-    },
+    // stock: {
+    //   type: Number,
+    //   default: 0,
+    // },
   },
   { collection: "products", timestamps: true }
 );
