@@ -10,17 +10,22 @@ const CreateBill = ({ isModalOpen, setIsModalOpen }) => {
 
   const onFinish = async (values) => {
     try {
-      const res = await fetch("http://localhost:8000/api/bills/get-all", {
-        method: "POST",
-        body: JSON.stringify({
-          ...values,
-          subTotal: cart.total,
-          tax: ((cart.total * cart.tax) / 100).toFixed(2),
-          totalAmount: (cart.total + (cart.total * cart.tax) / 100).toFixed(2),
-          cartItems: cart.cartItems,
-        }),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      const res = await fetch(
+        process.env.REACT_APP_SERVER_URL + "/api/bills/get-all",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            ...values,
+            subTotal: cart.total,
+            tax: ((cart.total * cart.tax) / 100).toFixed(2),
+            totalAmount: (cart.total + (cart.total * cart.tax) / 100).toFixed(
+              2
+            ),
+            cartItems: cart.cartItems,
+          }),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
 
       if (res.status === 200) {
         message.success("Fatura başarıyla oluşturuldu.");

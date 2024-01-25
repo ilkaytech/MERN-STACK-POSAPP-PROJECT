@@ -10,11 +10,15 @@ const Login = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      const res = await fetch(
+        process.env.REACT_APP_SERVER_URL + "/api/auth/login",
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
+
       const user = await res.json();
 
       if (res.status === 200) {
@@ -27,13 +31,12 @@ const Login = () => {
         );
         message.success("Giriş işlemi başarılı.");
         navigate("/");
-        setLoading(false);
       } else if (res.status === 404) {
         message.error("Kullanıcı bulunamadı!");
-        setLoading(false);
       } else if (res.status === 403) {
-        message.error("Şifre Yanlış!");
+        message.error("Şifre yanlış!");
       }
+      setLoading(false);
     } catch (error) {
       message.error("Bir şeyler yanlış gitti.");
       console.log(error);
