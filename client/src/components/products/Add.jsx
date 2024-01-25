@@ -12,7 +12,7 @@ const Add = ({
 
   const onFinish = (values) => {
     try {
-      fetch(process.env.REACT_APP_SERVER_URL + "/products", {
+      fetch(process.env.REACT_APP_SERVER_URL + "/api/products/add-product", {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "Content-type": "application/json; charset=UTF-8" },
